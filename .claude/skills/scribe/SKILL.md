@@ -103,14 +103,15 @@ After the commit is confirmed and pushed, append a one-shot entry to the schedul
 ```bash
 bun -e "
 const fs = require('fs');
-const path = process.env.BOT_DATA_DIR + '/schedules.json';
+const path = (process.env.BOT_DATA_DIR || require('os').homedir() + '/bot-data') + '/schedules.json';
 const data = JSON.parse(fs.readFileSync(path, 'utf8'));
-data.push({
+data.schedules.push({
   id: 'remind-' + crypto.randomUUID().slice(0, 8),
   cron: '',
   tz: 'Europe/Moscow',
   prompt_key: 'scribe_reminder',
-  last_fired: 'FIRE_AT_ISO',
+  last_fired: null,
+  fire_at: 'FIRE_AT_ISO',
   one_shot: true,
   payload: {
     reminder_message: 'REMINDER_TEXT',
