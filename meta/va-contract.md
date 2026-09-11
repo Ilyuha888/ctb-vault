@@ -134,6 +134,21 @@ MOC body: one section per sub-cluster, wikilinks to every note in cluster, backl
 
 **Graduation**: a `tasks.md` row is never auto-promoted to a project note. To manually expand a row into a project: create `projects/<slug>.md` with full project frontmatter (`outcome`, `next_action`, etc. per Note Types schema), remove the row from `tasks.md`, commit. The agent does this only under explicit user instruction.
 
+## Curriculum Session Logging Rule
+
+After every curriculum study session, update `projects/ai-curriculum-2026.md` in this exact order:
+
+1. **Mark the T-table row done** — add `✅ done YYYY-MM-DD` to the Status column of the completed day(s)
+2. **Add a Session Log entry** — date header + what was covered + what was NOT reached (if session ended early)
+3. **Update `next_action` frontmatter** — set to the next item in the rotation (T2 → T3 → T4 → T5 → T2…), naming the specific track-day (e.g. `T2-D13: Introduction to Agent Skills`)
+4. **Update `last_reviewed`** — set to today's date
+
+**Deprecated:** the inline "Next up:" line in the Rotation Schedule section is a single source of truth — keep it in sync with `next_action`. Do not maintain a second copy elsewhere in the body.
+
+**Never mark a day done if the exercise was not completed** — partial sessions get a note in the Session Log (e.g. "material covered, exercise not done — redo next session") and the T-table row stays unmarked.
+
+---
+
 ## Query Order (topic lookup)
 
 1. Read `meta/topic-index.md` — find relevant MOC
